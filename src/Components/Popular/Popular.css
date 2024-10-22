@@ -1,0 +1,191 @@
+.popular {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 100px;
+    background: linear-gradient(180deg, #8E7A69, #e1ffea22 60%);
+}
+
+.popular h1 {
+    color: #FDF8E7;
+    font-size: 50px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80%;
+    height: 70vh; /* Increased height for better hover effect */
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.popular-items {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.popular-item-wrapper {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 33.3333333%;
+    transition: transform 0.5s ease-in-out;
+    transform-origin: center;
+    box-sizing: border-box;
+    transform: scale(0.8); /* Scale down the side items */
+    opacity: 0.6; /* Make side items less opaque */
+}
+
+.popular-item-wrapper.center-item {
+    transform: scale(1.2); 
+    opacity: 1; 
+}
+
+.popular-item-wrapper.center-item:hover {
+    transform: scale(1.3); 
+}
+
+.popular-item img {
+    border-radius: 20px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for better look */
+    transition: transform 0.3s ease-in-out;
+}
+
+.popular-item-wrapper:hover .popular-item img {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.slider-btn {
+    background: linear-gradient(135deg, #4B2C20, #6E4A35); /* Dark brown gradient for buttons */
+    border: none;
+    color: #FDF8E7; /* Lighter color for text/icons */
+    font-size: 30px;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2; /* Increase z-index to ensure button is above gradients */
+    border-radius: 50%; /* Rounded buttons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-btn {
+    left: 10px; /* Positioning left button */
+}
+
+.right-btn {
+    right: 10px; /* Positioning right button */
+}
+
+.left-btn:hover,
+.right-btn:hover {
+    background: linear-gradient(135deg, #6E4A35, #4B2C20); /* Reverse gradient on hover */
+}
+
+/* Add gradient overlay on both sides */
+.slider-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 10%; /* Adjust width as needed */
+    background: linear-gradient(to right, #6E4A35, transparent); /* Gradient on the left only */
+    z-index: 1;
+}
+
+.slider-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 10%; /* Adjust width as needed */
+    background: linear-gradient(to left, #6E4A35, transparent); /* Gradient on the right only */
+    z-index: 1;
+}
+
+/* Hide the middle distortion element */
+.slider::before,
+.slider::after {
+    content: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1280px) {
+    .popular h1 {
+        font-size: 40px;
+    }
+
+    .popular-item-wrapper.center-item {
+        transform: scale(1.1);
+    }
+
+    .popular-item-wrapper.center-item:hover {
+        transform: scale(1.2);
+    }
+}
+
+@media (max-width: 1024px) {
+    .popular h1 {
+        font-size: 30px;
+    }
+
+    .popular-items {
+        gap: 15px;
+    }
+
+    .popular-item-wrapper {
+        flex: 0 0 calc((100% - 30px) / 2);
+    }
+}
+
+@media (max-width: 800px) {
+    .popular h1 {
+        font-size: 20px;
+    }
+
+    .popular-items {
+        gap: 25px;
+    }
+
+    .popular-item-wrapper {
+        flex: 0 0 calc(100% / 2);
+    }
+}
+
+@media (max-width: 500px) {
+    .popular {
+        height: 90vh;
+    }
+
+    .popular-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .popular-item-wrapper {
+        flex: 0 0 100%;
+    }
+}

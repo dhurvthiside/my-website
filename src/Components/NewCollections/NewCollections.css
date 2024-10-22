@@ -1,0 +1,57 @@
+.new-collections {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    background-color: #F5F0E1; /* Background color similar to the one in the screenshot */
+    padding: 40px 0;
+}
+
+.new-collections h1 {
+    font-size: 36px;
+    font-weight: 600;
+    color: #5D4037; /* Adjusted to match the earthy tones in the design */
+    margin-bottom: 30px;
+}
+
+.new-collections-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.new-collection-item {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid #5D4037; /* Border color matching the heading */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.new-collection-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .new-collections h1 {
+        font-size: 28px;
+    }
+
+    .new-collections-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .new-collection-item {
+        width: 200px;
+        height: 200px;
+    }
+}
