@@ -10,13 +10,14 @@ import LoginSignup from "./Pages/LoginSignup";
 import AboutUs from "./Pages/AboutUs";
 import Popular from "./Components/Popular/Popular";
 import Footer from "./Components/Footer/Footer";
-import men_banner from "./Components/Assets/banner_mens.png";
+// import men_banner from "./Components/Assets/banner_mens.png";
 import women_banner from "./Components/Assets/banner_women.png";
 import kid_banner from "./Components/Assets/banner_kids.png";
 import Signup from "./Pages/Signup";
 import { AuthContextProvider } from "./Context/AuthContext";
 import Login from "./Pages/Signin";
 import AddProduct from "./Pages/AddProduct";
+import PrivateRoute from "./Components/PrivateRoute"; // Import PrivateRoute
 
 function App() {
   return (
@@ -26,9 +27,8 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Shop />} />
-            <Route path="/sign-up" element={<Signup />}></Route>
-            <Route path="/sign-in" element={<Login />}></Route>
-
+            <Route path="/sign-up" element={<Signup />} />
+            <Route path="/sign-in" element={<Login />} />
             <Route
               path="/earrings"
               element={<ShopCategory category="earrings" />}
@@ -48,7 +48,16 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginSignup />} />
             <Route path="/about" element={<AboutUs />} />
-            <Route path="/add-product" element={<AddProduct />} />
+
+            {/* Protect AddProduct Route */}
+            <Route
+              path="/add-product"
+              element={
+                <PrivateRoute>
+                  <AddProduct />
+                </PrivateRoute>
+              }
+            />
           </Routes>
           <Footer />
         </AuthContextProvider>

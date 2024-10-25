@@ -7,13 +7,13 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-//   const router = useRouter();
+  //   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await emailSignUp(username, email, password);
-    //   router.push("/sign-in");
+      //   router.push("/sign-in");
     } catch (error) {
       console.error(error);
     }
