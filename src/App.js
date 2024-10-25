@@ -16,6 +16,7 @@ import kid_banner from "./Components/Assets/banner_kids.png";
 import Signup from "./Pages/Signup";
 import { AuthContextProvider } from "./Context/AuthContext";
 import Login from "./Pages/Signin";
+import AddProduct from "./Pages/AddProduct";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<LoginSignup />} />
             <Route path="/about" element={<AboutUs />} />
+            <Route path="/add-product" element={<AddProduct />} />
           </Routes>
           <Footer />
         </AuthContextProvider>
