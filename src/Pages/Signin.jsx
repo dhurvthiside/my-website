@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useAuth } from "../Context/AuthContext"; // Update with the correct path to your AuthContext
-import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { emailSignIn, signInWithGoogle, loading } = useAuth();

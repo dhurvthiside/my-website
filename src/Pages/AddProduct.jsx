@@ -47,6 +47,8 @@ export default function AddProduct() {
     } catch (error) {
       console.error("Error creating blog:", error);
       throw new Error("Failed to create blog");
+    } finally {
+      setText("");
     }
   }
 
