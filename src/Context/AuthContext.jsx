@@ -39,9 +39,19 @@ async function verifyUser(user, password, username) {
 }
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate(); // React Router navigate function
+
+  const storeUserInLocalStorage = (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
+  const removeUserFromLocalStorage = () => {
+    localStorage.removeItem("user");
+  };
 
   const signInWithGoogle = async () => {
     setLoading(true);
@@ -49,6 +59,7 @@ export const AuthContextProvider = ({ children }) => {
     try {
       const { user } = await signInWithPopup(auth, provider);
       setUser(user);
+      storeUserInLocalStorage(user);
       verifyUser(user);
       navigate("/"); // Replace with the route you want to navigate to
     } catch (e) {
@@ -61,6 +72,8 @@ export const AuthContextProvider = ({ children }) => {
   const logout = async () => {
     setLoading(true);
     await signOut(auth);
+    removeUserFromLocalStorage();
+    setUser(null);
     setLoading(false);
     navigate("/login"); // Replace with the logout route
   };
@@ -68,14 +81,14 @@ export const AuthContextProvider = ({ children }) => {
   const emailSignUp = async (username, email, password) => {
     try {
       setLoading(true);
-      console.log(username, email, password);
       const { user } = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      console.log(user);
       await verifyUser(user, password, username);
+      setUser(user);
+      storeUserInLocalStorage(user);
       navigate("/sign-in"); // After successful signup
     } catch (error) {
       console.log(error.message);
@@ -89,6 +102,7 @@ export const AuthContextProvider = ({ children }) => {
       setLoading(true);
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       setUser(user);
+      storeUserInLocalStorage(user);
       const docRef = doc(db, `users/${user.email}`);
       const docSnap = await getDoc(docRef);
       if (!docSnap.exists()) {
@@ -105,9 +119,11 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) storeUserInLocalStorage(currentUser);
+      else removeUserFromLocalStorage();
     });
     return () => unsubscribe();
-  }, [user]);
+  }, []);
 
   return (
     <AuthContext.Provider
