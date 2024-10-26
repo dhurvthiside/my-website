@@ -1,7 +1,7 @@
 import { db } from "../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Modal from "../Components/Modals/Modal";
 import { useAuth } from "../Context/AuthContext";
 // // import { AuthContextType } from "@/types";
@@ -66,12 +66,10 @@ export default function AddProduct() {
       </div>
 
       <div>
-        <Image
-          className="object-cover max-h-[375px]"
+        <img
+          className="object-cover max-h-[375px] w-[1280px]"
           src="/food.png"
           alt="FOOD"
-          width={1280}
-          height={375}
         />
       </div>
 

@@ -19,11 +19,12 @@
     "dotenv": "^16.4.5",
     "firebase": "^11.0.1",
     "lucide-react": "^0.453.0",
+    "next": "^14.2.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.52.0",
     "react-router-dom": "^6.25.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^5.0.1",
     "sass": "^1.77.6",
     "tailwind-merge": "^2.5.4",
     "tailwindcss-animate": "^1.0.7",
@@ -54,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.26.0",
     "cross-env": "^7.0.3",
     "stylelint": "^16.10.0",
